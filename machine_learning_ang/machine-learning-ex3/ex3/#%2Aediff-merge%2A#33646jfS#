@@ -1,0 +1,246 @@
+<<<<<<< variant A
+%% Machine Learning Online Class - Exercise 3 | Part 2: Neural Networks
+
+%  Instructions
+%  ------------
+% 
+%  This file contains code that helps you get started on the
+%  linear exercise. You will need to complete the following functions 
+%  in this exericse:
+%
+%     lrCostFunction.m (logistic regression cost function)
+%     oneVsAll.m
+%     predictOneVsAll.m
+%     predict.m
+%
+%  For this exercise, you will not need to change any code in this file,
+%  or any other files other than those mentioned above.
+%
+
+%% Initialization
+clear ; close all; clc
+
+%% Setup the parameters you will use for this exercise
+input_layer_size  = 400;  % 20x20 Input Images of Digits
+hidden_layer_size = 25;   % 25 hidden units
+num_labels = 10;          % 10 labels, from 1 to 10   
+                          % (note that we have mapped "0" to label 10)
+
+%% =========== Part 1: Loading and Visualizing Data =============
+%  We start the exercise by first loading and visualizing the dataset. 
+%  You will be working with a dataset that contains handwritten digits.
+%
+
+% Load Training Data
+fprintf('Loading and Visualizing Data ...\n')
+
+load('ex3data1.mat');
+m = size(X, 1);
+
+% Randomly select 100 data points to display
+sel = randperm(size(X, 1));
+sel = sel(1:100);
+
+displayData(X(sel, :));
+
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+
+%% ================ Part 2: Loading Pameters ================
+% In this part of the exercise, we load some pre-initialized 
+% neural network parameters.
+
+fprintf('\nLoading Saved Neural Network Parameters ...\n')
+
+% Load the weights into variables Theta1 and Theta2
+load('ex3weights.mat');
+
+%% ================= Part 3: Implement Predict =================
+%  After training the neural network, we would like to use it to predict
+%  the labels. You will now implement the "predict" function to use the
+%  neural network to predict the labels of the training set. This lets
+%  you compute the training set accuracy.
+
+pred = predict(Theta1, Theta2, X);
+
+fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
+
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+
+%  To give you an idea of the network's output, you can also run
+%  through the examples one at the a time to see what it is predicting.
+
+%  Randomly permute examples
+rp = randperm(m);
+
+for i = 1:m
+    % Display 
+    fprintf('\nDisplaying Example Image\n');
+    displayData(X(rp(i), :));
+
+    pred = predict(Theta1, Theta2, X(rp(i),:));
+    fprintf('\nNeural Network Prediction: %d (digit %d)\n', pred, mod(pred, 10));
+    
+    % Pause with quit option
+    s = input('Paused - press enter to continue, q to exit:','s');
+    if s == 'q'
+      break
+    end
+end
+
+>>>>>>> variant B
+#+ARCHIVE: myarchive.org::
+#+AUTHOR: Dave Kensinger
+#+TITLE: Main Notes File (~/org/notes.org file)
+#+SUBTITLE: my main working org file
+
+* Recurring Tasks 
+** NEXT Weekly review                                                  :Dave:
+   DEADLINE: <2017-09-15 Fri ++1w>
+   :PROPERTIES:
+   :LAST_REPEAT: [2017-09-02 Sat 10:25]
+   :END:
+   :LOGBOOK:
+   - State "DONE"       from "WAITING"    [2017-09-02 Sat 10:25]
+   - State "DONE"       from "WAITING"    [2017-09-02 Sat 10:24]
+   - State "DONE"       from "NEXT"       [2017-08-30 Wed 13:30]
+   - State "DONE"      ** DONE follow up on Pædagogisk rækkevidde signup form problems      :Iteras:
+   CLOSED: [2017-09-04 Mon 13:27]
+   :LOGBOOK:
+   - Note taken on [2017-09-04 Mon 13:27] \\
+     all order forms will have to be redone following the cleanup of the enheder
+   - State "WAITING"    from "TODO"       [2017-08-31 Thu 22:33] \\
+     waiting for response from Iteras
+   :END:
+ from "NEXT"       [2017-08-23 Wed 07:38]
+   :END:
+** NEXT Monthly ebook processing [0/3]
+   DEADLINE: <2017-09-25 Mon ++1m>
+   - [ ] Taenkepauser audio to pubhub
+   - [ ] 100 DH audio to pubhub
+   - [ ] digital files to AWS and links in Umbraco [0/9]
+     - [ ] 100 DH
+     - [ ] PR
+     - [ ] TP
+     - [ ] 50 HP
+     - [ ] Holberg
+     - [ ] Passage
+     - [ ] Slagmark
+     - [ ] Sprogforum
+     - [ ] Gefjon
+
+* Captured
+  this is where all the captured "TODOs" will end up for processing
+** TODO change "File download Url" to "AWS download URL"             :Illumi:
+** TODO change Iteras ID field name to something else                :Illumi:
+** WAITING new users biliotek page needs a default view instead of Loading... :Illumi:
+   :LOGBOOK:
+   - Note taken on [2017-09-07 Thu 12:04] \\
+     where is this setting?
+   - Note taken on [2017-08-31 Thu 22:36] \\
+     waiting for deployment - need to create default page
+   - State "WAITING"    from "TODO"       [2017-08-24 Thu 09:53] \\
+     email sent to Illumi regarding this note. waiting for their response.
+   :END:
+** TODO ask Rikke what her plans are with this                         :Dave:
+   [[mu4e:msgid:D58ED72B-CEA4-4E0C-A490-ACC7C16A8018@mac.com][FW: Ferie og rejser]]
+** SOMEDAY how can we flag a "problem subscriber" in the system?     :Iteras:
+   :LOGBOOK:
+   - State "WAITING"    from "TODO"       [2017-08-30 Wed 15:15] \\
+     feature asked for in Iteras
+   - Note taken on [2017-08-24 Thu 15:15] \\
+     If we have a subscriber with a "problem" background... can we set up some way of preventing them from subscribing in the future - at least automatically?
+   :END:
+** NEXT [#A] complete residency permit checklist [0/7]                 :Dave:
+   DEADLINE: <2017-09-06 Wed>
+    - [ ] copy of deed
+    - [ ] size of rooms in house
+    - [ ] signature
+    - [ ] attachment 3 filled in
+    - [ ] renew bank guarantee
+    - [ ] application fee
+    - [ ] dansk prov 2 paperwork
+** NEXT Pædagogisk rækkevidde site changes [0/5]                      :Press:
+   DEADLINE: <2017-09-08 Fri>
+   :LOGBOOK:
+   - Note taken on [2017-09-01 Fri 13:33] \\
+     Call with Henrik. Agreed to 1-1.5 days of work to make 3 main changes: banner, book grouping, button logic
+   :END:
+*** WAITING add a banner feature                                     :Illumi:
+    :LOGBOOK:
+    - State "WAITING"    from "NEXT"       [2017-09-01 Fri 12:19] \\
+      request sent to Illumi
+    :END:
+*** TODO create a signup form with discount price                      :Dave:
+*** TODO put subscription signup link into text on PR subsite          :Dave:
+*** TODO allow additional discount books below the banner            :Illumi:
+**** TODO create discount code for these books                         :Dave:
+**** NEXT select books                                                :Press:
+*** SOMEDAY place signup block on PR "secret" page                   :Illumi:
+** WAITING improve unipress.dk site wide search                      :Illumi:
+   :LOGBOOK:
+   - State "WAITING"    from "TODO"       [2017-09-07 Thu 12:05] \\
+     email sent to Illumi  [2017-09-04 Mon]
+   - Note taken on [2017-09-01 Fri 13:43] \\
+     emailed about this on [2017-09-01 Fri 13:55] 
+   :END:
+** WAITING adjust SPF record for exchange address unipress.au.dk to include mail.iteras.dk :Dave:
+   DEADLINE: <2017-09-07 Thu>
+   :LOGBOOK:
+   - State "WAITING"    from "NEXT"       [2017-08-18 Fri 09:22] \\
+     email sent to AU IT support
+   :END:
+** WAITING Google Analytics integration                              :Illumi:
+   :LOGBOOK:
+   - Note taken on [2017-08-15 Tue 21:06] \\
+     supposedly put on high priority for this week
+   :END:
+   - State "WAITING"    from "TODO"       [2017-06-26 Mon 20:01] \\
+   - waiting for Illumi to fix this
+   - some data still works
+   - the sales events are not showing
+** WAITING repair Rikke's work phone (again)                           :Dave:
+   :LOGBOOK:
+   - State "WAITING"    from "TODO"       [2017-09-06 Wed 21:36] \\
+     in for repair again
+   :END:
+** NEXT Create Groups in Nyhedsbrev                          :MailChimp:Dave:
+** TODO PR site text needs changing [0/6]                              :Dave:
+   DEADLINE: <2017-09-08 Fri>
+   - [ ] add link to special signup form for discount subscription
+   - [ ] mention the discount price for buying print books
+   - [ ] create discount code (5000 uses?) and put in text
+   - [ ] input banner text (when ready) for additional book discounts
+   - [ ] create additional book group discount code
+   - [ ] run whole design by rk and cha
+** TODO create ONIX custom field checker for Sanne and I to use
+** TODO Finish processing early subscriber list                        :Dave:
+   DEADLINE: <2017-09-07 Thu>
+   :LOGBOOK:
+   - Note taken on [2017-09-08 Fri 08:51] \\
+     waiting for a two people
+   :END:
+** TODO upgrade Sanne's ONIXEditor version
+* Links
+** four earth sized planets found
+   Entered on [2017-08-10 Thu 22:33]
+   notes: https://news.ucsc.edu/2017/08/tau-ceti-planets.html
+** haskell matrix library - hmatrix
+   Entered on [2017-08-17 Thu 22:03]
+   notes: http://dis.um.es/%7Ealberto/hmatrix/hmatrix.html
+** the recipes for org capture templates
+   Entered on [2017-08-23 Wed 13:10]
+   notes: http://orgmode.org/manual/Template-expansion.html#Template-expansion
+* Notes
+** action verbs to use for tasks
+   Entered on [2017-07-05 Wed 19:48]
+   link: [[file:~/org/journal.org::*a%20new%20entry%20from%20home][a new entry from home]]
+   notes: address, ask, avoid, buy, change, clarify, collect, commend confront, consider, create, decide, defer, develop, discard, do again, download, enter, file, follow up, hire, improve, increase, inform, inquire, maintain, measure, monitor, order, paint, phone, prioritize, purchase, question, reduce, remember, repair, reply, report, research, resolve, review, schedule, sell, send, service, specify, start, stop, suggest, tidy, train, update, upgrade, write.
+** Can you write a paragraph without the letter 'E'?
+   Entered on [2017-08-07 Mon 14:18]
+   notes: I doubt I can. It’s a major part of many, many words. Omitting it is as hard as making muffins without flour. It’s as hard as spitting without saliva, napping without a pillow, driving a train without tracks, sailing to Russia without a boat, or washing your hands without soap. And, anyway, what would I gain? An award? A cash bonus? Bragging rights? Why should I strai n my brain? It’s not worth doing. Now, a grammatical paragraph without commas: that would wow most folks, don’t you think? Could you do it? If so, I tip my hat to you—or I would if I had a hat. Or, how about a paragraph without punctuation? Or a paragraph without nouns? If you can do that, you’ll win my admiration. Go on. Try! I’m waiting…
+** Neal Stephenson quote on emacs
+   Entered on [2017-09-03 Sun 21:23]
+   notes: [...] I use emacs, which might be thought of as a thermonuclear word processor. It was created by Richard Stallman; enough said. It is written in Lisp, which is the only computer language that is beautiful. It is colossal, and yet it only edits straight ASCII text files, which is to say, no fonts, no boldface, no underlining. In other words, the engineer-hours that, in the case of Microsoft Word, were devoted to features like mail merge, and the ability to embed feature-length motion pictures in corporate memoranda, were, in the case of emacs, focused with maniacal intensity on the deceptively simple-seeming problem of editing text. If you are a professional writer—i.e., if someone else is getting paid to worry about how your words are formatted and printed—emacs outshines all other editing software in approximately the same way that the noonday sun does the stars. It is not just bigger and brighter; it simply makes everything else vanish.
+======= end
